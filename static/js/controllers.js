@@ -167,7 +167,14 @@
                 desc: 'User',
                 template: 'ticket_table_user_column',
             },
-            {name: 'spent_hours', desc: 'Time Spent hour(s)'}
+            {
+                name: 'spent_hours',
+                desc: 'Time Spent hour(s)'
+            },
+            {
+                name: 'queue',
+                desc: 'Queue'
+            }
         ];
 
         TicketUserBase.call(ctrl, Settings, GetFactory, BuildPlotConf, $scope);
@@ -185,7 +192,14 @@
                 desc: 'Ticket',
                 template: 'user_table_ticket_column',
             },
-            {name: 'spent_hours', desc: 'Time Spent hour(s)'}
+            {
+                name: 'spent_hours',
+                desc: 'Time Spent hour(s)'
+            },
+            {
+                name: 'queue',
+                desc: 'Queue'
+            }
         ];
 
         TicketUserBase.call(ctrl, Settings, GetFactory, BuildPlotConf, $scope);

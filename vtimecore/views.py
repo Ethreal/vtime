@@ -56,6 +56,7 @@ def data_for_single_object(attr, attr_id, start_date=None, end_date=None):
     qs = filter_dates(qs, start_date, end_date)
 
     hours_by_attr = defaultdict(int)
+    queue_by_attr = defaultdict(str)
     total_hours_spent = 0
 
     for rec in qs.all():
@@ -66,11 +67,12 @@ def data_for_single_object(attr, attr_id, start_date=None, end_date=None):
 
         attr_name = type_by_attr[attr]
         hours_by_attr[getattr(rec, attr_name)] += spent_hours
+        queue_by_attr[getattr(rec, attr_name)] = (rec.queue)
 
     return {
         'spent_hours': round(total_hours_spent, PRECISION),
-        'data': [{'id': k, 'spent_hours': round(v, PRECISION)}
-                 for k, v in hours_by_attr.items()]
+        'data': [{'id': k, 'spent_hours': round(v, PRECISION), 'queue':queue_by_attr[k]}
+                 for k, v in hours_by_attr.items()],
     }
 
 
@@ -86,6 +88,7 @@ def data_by_user(members, start_date, end_date):
         data_by_user[u] = {
             'spent_hours': 0,
             'time_by_ticket_hours': defaultdict(int),
+            'queue_by_ticket': defaultdict(str),
         }
 
     for rec in qs.all():
@@ -94,10 +97,11 @@ def data_by_user(members, start_date, end_date):
         x = data_by_user[rec.username]
         x['spent_hours'] += rec.spent_hours
         x['time_by_ticket_hours'][rec.ticket] += rec.spent_hours
+        x['queue_by_ticket'][rec.ticket] = rec.queue
 
     for x in data_by_user.values():
         x['spent_hours'] = round(x['spent_hours'], PRECISION)
-        x['tickets'] = [{'id': t, 'spent_hours': round(v, PRECISION)}
+        x['tickets'] = [{'id': t, 'spent_hours': round(v, PRECISION), 'queue': x['queue_by_ticket'][t]}
                         for t, v in sorted(x['time_by_ticket_hours'].items(),
                                            key=lambda x: x[1], reverse=True)]
 

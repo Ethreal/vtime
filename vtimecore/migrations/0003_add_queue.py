@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='record',
             name='queue',
-            field=models.CharField(default='general', max_length=25, verbose_name=b'Queue'),
+            field=models.CharField(default='unknown', max_length=25, verbose_name=b'Queue'),
             preserve_default=False,
         ),
         migrations.AlterField(

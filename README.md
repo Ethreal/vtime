@@ -27,13 +27,15 @@ Several commands
 * `django-admin createsuperuser`
 * `django-admin import_timesheets`
 * `django-admin runserver 0.0.0.0:8001`
+* `npm install .`
+* `django-admin collectstatic`
 
 That's it.
 
 Several links
 =======
 * [Create a team](http://localhost:8001/admin/vtimecore/team/add/)
-
+* [Admin](http://0.0.0.0:8001/admin/vtimecore/)
 
 License
 -------
