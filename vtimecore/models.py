@@ -7,7 +7,7 @@ class Record(models.Model):
     end_date = models.DateTimeField('End date')
     ticket = models.PositiveIntegerField('Ticket No.')
     comment = models.TextField('Comment')
-    queue = models..CharField('Queue', max_length=25)
+    queue = models.CharField('Queue', max_length=25)
 
     class Meta:
         index_together = (('start_date', 'username'), ('ticket', ))
