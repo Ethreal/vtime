@@ -29,7 +29,7 @@ def parse_sheet(path):
         ticket = int(rt.split(':')[-1])
         comment = comment.strip("'").strip('"')
 
-        yield ticket, start_date, end_date, comment
+        yield ticket, start_date, end_date, comment, queue
 
 
 def parse_timesheets():
@@ -54,7 +54,7 @@ def parse_timesheets():
 
             records = []
             dups = {}
-            for ticket, start_date, end_date, comment in parse_sheet(path):
+            for ticket, start_date, end_date, comment, queue in parse_sheet(path):
                 key = (start_date, end_date)
                 if key not in dups:
                     dups[key] = True
@@ -66,7 +66,8 @@ def parse_timesheets():
                     start_date=start_date,
                     end_date=end_date,
                     ticket=ticket,
-                    comment=comment
+                    comment=comment,
+                    queue=queue
                 )
                 records.append(rec)
 
