@@ -13,7 +13,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parents[2]
 
 # XXX Temporary -- while local.conf is not created yet
-SHEETS_DIR = expanduser('~/iponweb/admin/timesheet')
+SHEETS_DIR = expanduser('~/Documents/IPONWEB/iponweb/admin/timesheet')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
