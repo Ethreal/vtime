@@ -67,12 +67,13 @@ def data_for_single_object(attr, attr_id, start_date=None, end_date=None):
 
         attr_name = type_by_attr[attr]
         hours_by_attr[getattr(rec, attr_name)] += spent_hours
-        queue_by_attr[getattr(rec, attr_name)] = (rec.queue)
+        queue_by_attr[getattr(rec, attr_name)] = rec.queue
 
     return {
         'spent_hours': round(total_hours_spent, PRECISION),
         'data': [{'id': k, 'spent_hours': round(v, PRECISION), 'queue':queue_by_attr[k]}
                  for k, v in hours_by_attr.items()],
+        'queue':rec.queue
     }
 
 

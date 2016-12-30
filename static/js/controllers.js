@@ -170,10 +170,6 @@
             {
                 name: 'spent_hours',
                 desc: 'Time Spent hour(s)'
-            },
-            {
-                name: 'queue',
-                desc: 'Queue'
             }
         ];
 
